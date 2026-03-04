@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 
 def scatter_plot(partical):
     '''
-    what do you call a mellon that jumps into water
-    
-    a water mellon
+    input list with first index being charge level, and second index being another list containing partical cordinates
+
+    creates scatter plot for every coordinate in found in the second index of the inputted list
     '''
     if partical[0] == 1:
         colour = "red"
