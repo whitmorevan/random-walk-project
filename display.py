@@ -1,17 +1,25 @@
 import matplotlib.pyplot as plt
 
-def scatter_plot(x, y, charge):
+def scatter_plot(partical):
     '''
-    scatter_plot(x, y) | 
-    oks so i believe the particals will have x and y cordinates and then a charge level to indicate which side of the graph it will be on, or idk how that will effect the x axis... maybe the charge is the x axis??? ¯\_(ツ)_/¯  idk will see later on ima just start writing stufff.
+    what do you call a mellon that jumps into water
     
-    input x and y cordinates along with the charge level and shoes the plot
+    a water mellon
     '''
-    plt.scatter(x, y)
-    plt.xlim(0, 1)
-    plt.title("Random Walk Project\n Simulating Particals In A Biased Electrical Field")
-    plt.xlabel("Charge Level\n 0 being positive and 1 being negative")
-    plt.ylabel("wooaah y axis!!!")
-    plt.show()
+    if partical[0] == 1:
+        colour = "red"
+    else:
+        colour = "black"
     
-    #need to work on like colours 
+    partical_cordinates = partical[1]
+    for i in partical_cordinates:
+        cord = i
+        plt.scatter(cord[0], cord[1], c = colour)
+        plt.title("Random Walk Project\n Simulating Particals In A Biased Electrical Field")
+        plt.xlabel("insert text here")
+        plt.ylabel("wooaah y axis!!!")
+        plt.show()
+
+
+listo = [1, [[3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95], [3.15, 4.95]]]
+scatter_plot(listo)
