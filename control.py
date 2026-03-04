@@ -6,8 +6,10 @@ import display
 # 0 = -
 # 1 = +
 
-
+# settings
 num_particles = 20
+step_length = 1
+frames = 10
 x_range = [-10, 10]
 y_range = [-10, 10]
 
