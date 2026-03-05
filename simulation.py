@@ -70,13 +70,12 @@ def take_step(step_size, p_info, x_range, y_range):
     while True:
         current_pos = (coords[len(coords) - 1]).copy()
         
+        # x step testing
         x = random.uniform(0, step_size)
-        
         if p_info[0] == 0 and random.random() > 0.05:       
             x = -x
         
         current_pos[0] += x
-        
         valid_x_step = check_valid_position(x_range, y_range, current_pos)
         
         if valid_x_step == False:
@@ -84,7 +83,8 @@ def take_step(step_size, p_info, x_range, y_range):
             y = random.uniform(0, step_size)
         else:
             y = (step_size**2 - x**2)**.5
-            
+         
+        # y step testing
         if p_info[0] == 0 and random.random() > 0.05:
             y = -y
         

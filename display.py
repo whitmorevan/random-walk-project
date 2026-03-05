@@ -23,3 +23,10 @@ def scatter_plot(particle, x_range, y_range):
         plt.xlabel("insert text here")
         plt.ylabel("wooaah y axis!!!")
         plt.show()
+
+
+
+
+# this looks good!!
+# but needs to show all the particles for each frame
+# brief googling says just add multiple points before calling plt.show()
