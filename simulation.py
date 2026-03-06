@@ -11,6 +11,7 @@ def generate_particles(n, x_range, y_range):
     # needs to check for overlap
     
     particles = []
+    
     for i in range(n):
         p_info = []
         p_coords = []
@@ -18,7 +19,12 @@ def generate_particles(n, x_range, y_range):
         charge = random.randint(0, 1)
         p_info.append(charge)
         
-        p_coords.append(random_coord(x_range, y_range))
+        while True:
+            pos = random_coord(x_range, y_range)
+            if check_collision(pos, particles, None):
+                break
+            
+        p_coords.append(pos)
         p_info.append(p_coords)
 
         particles.append(p_info)
@@ -43,34 +49,28 @@ def random_coord(x_range, y_range):
     return coord
 
 
-def avoid_collision(particles):
-    """
-    Determines if a spot is occupied. If not occupied, the particle's x, y, z position are updated. If not, the particle remains in its current position.
-    
-    Arg:
-        particles(list): list of particles each represented by their particle number, charge, and (x, y, z) position.
-    
-    Returns:
-        list: updated particle positions
-    """
-    #pos=position
-    #p[2] represents (x, y, z) in the tuple
-    occupied_spot = {pos[2] for pos in particles} 
-    updated_particles = []
-    
-    for particle_number, charge, (x, y, z) in particles:
-        
-        new_pos = random_step((x, y, z))
-        
-        #updates particle position if the new position is not occupied. Else it returns the same position to the list
-        if new_pos not in occupied_spot:
-            occupied_spot.remove(x, y, z)
-            occupied_spot.add(new_pos)
-            updated_particles.append(particle_number, charge, (new_pos))
-        else:
-            updated_particles.append(particle_number, charge, (x, y, z))
-        
-        return updated_particles
+def check_collision(pos, particles, current_particle, min_distance=0.25):
+
+    space = 1.2 #empty space margin
+    min_area = (min_distance * space) ** 2 #the area a point occupies
+
+    for particle in particles:
+
+        if particle is current_particle:
+            continue
+
+        other_pos = particle[1][-1]
+
+        dx = pos[0] - other_pos[0]
+        dy = pos[1] - other_pos[1]
+            
+        #deals with the fact coordinates are to the decimal places, calculating the area the point occupies
+        distance_squared = dx*dx + dy*dy
+
+        if distance_squared < min_area:
+            return False
+
+    return True
 
 
 def check_valid_position(x_range, y_range, pos):
@@ -90,7 +90,7 @@ def check_valid_position(x_range, y_range, pos):
 
 
 
-def take_step(step_size, p_info, x_range, y_range):
+def take_step(step_size, p_info, particles, x_range, y_range):
     
     coords = p_info[1] 
     
@@ -118,7 +118,8 @@ def take_step(step_size, p_info, x_range, y_range):
             y = -y
         
         current_pos[1] += y
-        valid_y_step = check_valid_position(x_range, y_range, current_pos)
+        valid_y_step = check_valid_position(x_range, y_range, current_pos) and \
+               check_collision(current_pos, particles, p_info) 
         
         if valid_y_step == True:
             break
@@ -157,6 +158,6 @@ def run_simulation(n, step_size, frames, x_range, y_range):
     
     for frame in range(frames - 1):
         for particle in particles:
-            take_step(step_size, particle, x_range, y_range)
+            take_step(step_size, particle, particles, x_range, y_range)
 
     return particles
