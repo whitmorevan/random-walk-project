@@ -34,7 +34,7 @@ The simulation produces a series of scatter plots showing particle movement acro
 These frames can also be combined into an animation to visualize particle movement over time.
 
 ## Example Simulation
-
+(btw gif needs to be updated to reflect avoided particle collisions)
 ![Particle Simulation](SimulationExample.gif)
 
 ## Inputs
