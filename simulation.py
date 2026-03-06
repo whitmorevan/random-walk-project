@@ -8,7 +8,6 @@ def generate_particles(n, x_range, y_range):
     returns particles (list) : [charge as 0/1, [list of [x, y]]]
 
     """
-    # needs to check for overlap
     
     particles = []
     
@@ -84,9 +83,6 @@ def check_valid_position(x_range, y_range, pos):
         return False
     
     return True
-
-    # needs to also check for overlap
-    # or maybe a different function for it?
 
 
 
