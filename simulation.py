@@ -41,7 +41,36 @@ def random_coord(x_range, y_range):
     coord.append(y)
     
     return coord
+
+
+def avoid_collision(particles):
+    """
+    Determines if a spot is occupied. If not occupied, the particle's x, y, z position are updated. If not, the particle remains in its current position.
     
+    Arg:
+        particles(list): list of particles each represented by their particle number, charge, and (x, y, z) position.
+    
+    Returns:
+        list: updated particle positions
+    """
+    #pos=position
+    #p[2] represents (x, y, z) in the tuple
+    occupied_spot = {pos[2] for pos in particles} 
+    updated_particles = []
+    
+    for particle_number, charge, (x, y, z) in particles:
+        
+        new_pos = random_step((x, y, z))
+        
+        #updates particle position if the new position is not occupied. Else it returns the same position to the list
+        if new_pos not in occupied_spot:
+            occupied_spot.remove(x, y, z)
+            occupied_spot.add(new_pos)
+            updated_particles.append(particle_number, charge, (new_pos))
+        else:
+            updated_particles.append(particle_number, charge, (x, y, z))
+        
+        return updated_particles
 
 
 def check_valid_position(x_range, y_range, pos):
