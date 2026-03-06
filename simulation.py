@@ -58,8 +58,8 @@ def check_valid_position(x_range, y_range, pos):
 
     # needs to also check for overlap
     # or maybe a different function for it?
-    
-    
+
+
 
 def take_step(step_size, p_info, x_range, y_range):
     
@@ -129,8 +129,5 @@ def run_simulation(n, step_size, frames, x_range, y_range):
     for frame in range(frames - 1):
         for particle in particles:
             take_step(step_size, particle, x_range, y_range)
-    
+
     return particles
-     
-
-
