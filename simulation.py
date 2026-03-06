@@ -59,7 +59,7 @@ def check_collision(pos, particles, current_particle, min_distance=0.25):
         if particle is current_particle:
             continue
 
-        other_pos = particle[1][-1]
+        other_pos = particle[1][-1] #checks for last position
 
         dx = pos[0] - other_pos[0]
         dy = pos[1] - other_pos[1]
