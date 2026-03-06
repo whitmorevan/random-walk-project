@@ -27,9 +27,9 @@ def scatter_plot(listo, frames, x_range, y_range):
             plt.xlim(x_range[0], x_range[1])
             plt.ylim(y_range[0], y_range[1])
             plt.scatter(x=current_coordinate[0], y=current_coordinate[1], c=colour)
-            plt.title("Random Walk Project\n Simulating Particals In A Biased Electrical Field")
-            plt.xlabel("insert text here")
-            plt.ylabel("wooaah y axis!!!")
+            plt.title(f"Random Walk Project\n Simulating Particals In A Biased Electrical Field\n frame: {run_count + 1}")
+            plt.xlabel("Charge Level")
+            plt.ylabel("Charge Level but sideways")
 
         plt.show()
         run_count += 1
