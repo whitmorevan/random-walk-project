@@ -8,6 +8,7 @@ def generate_particles(n, x_range, y_range):
     returns particles (list) : [charge as 0/1, [list of [x, y]]]
 
     """
+    # needs to check for overlap
     
     particles = []
     
@@ -50,15 +51,16 @@ def random_coord(x_range, y_range):
 
 def check_collision(pos, particles, current_particle, min_distance=0.25):
 
-    space = 1.2 #empty space margin
-    min_area = (min_distance * space) ** 2 #the area a point occupies
+    #empty space margin
+    space = 1.2
+    min_area = (min_distance * space) ** 2
 
     for particle in particles:
 
         if particle is current_particle:
             continue
 
-        other_pos = particle[1][-1] #checks for last position
+        other_pos = particle[1][-1]
 
         dx = pos[0] - other_pos[0]
         dy = pos[1] - other_pos[1]
@@ -83,6 +85,9 @@ def check_valid_position(x_range, y_range, pos):
         return False
     
     return True
+
+    # needs to also check for overlap
+    # or maybe a different function for it?
 
 
 
